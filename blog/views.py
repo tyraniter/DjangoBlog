@@ -92,7 +92,7 @@ class IndexView(ArticleListView):
     link_type = LinkShowType.I
 
     def get_queryset_data(self):
-        article_list = Article.objects.filter(type='a', status='p')
+        article_list = Article.objects.filter(type='a', status='p').order_by(self.request.GET.get('order', '-pub_time'))
         return article_list
 
     def get_queryset_cache_key(self):
